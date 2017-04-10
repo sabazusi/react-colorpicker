@@ -1,0 +1,19 @@
+{
+  "name": "react-colorpicker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bin/index.js",
+  "scripts": {
+    "storybook": "start-storybook -p 9001",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sabazusi",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^15.5.3",
+    "react-dom": "^15.5.3"
+  },
+  "devDependencies": {
+    "@kadira/storybook": "^2.35.3"
+  }
+}
