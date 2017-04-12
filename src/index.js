@@ -15,14 +15,33 @@ export default class ReactColorPicker extends React.Component<void, Props, State
   constructor() {
     super();
     this.state = {
-      current: 'ffffff'
+      current: 'ff0000'
+    };
+  }
+
+  getStyle() {
+    return {
     };
   }
 
   render() {
     return (
-      <div>
-        hogehoge
+      <div style={{
+        width: 300,
+        height: 300,
+        backgroundColor: '#f00'
+      }}>
+        <div style={{
+          width: 300,
+          height: 300,
+          background: 'linear-gradient(to right, #fff, rgba(204,154,129,0))'
+        }}>
+          <div style={{
+            width: 300,
+            height: 300,
+            background: 'linear-gradient(to top, #000, rgba(204,154,129,0))'
+          }} />
+        </div>
       </div>
     );
   }

@@ -4,5 +4,7 @@ import ColorPicker from '../src/index';
 
 storiesOf('ColorPicker', module)
   .add('default: #ff0000', () => (
-    <ColorPicker />
+    <ColorPicker
+      default="ff0000"
+    />
   ));
