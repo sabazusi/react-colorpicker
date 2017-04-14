@@ -24,13 +24,22 @@ export default class ReactColorPicker extends React.Component<void, Props, State
     };
   }
 
+  onClickPallet = (e: Event) => {
+    console.log(e.nativeEvent.offsetX);
+    console.log(e.nativeEvent.offsetY);
+  }
+
   render() {
     return (
-      <div style={{
-        width: 300,
-        height: 300,
-        backgroundColor: '#f00'
-      }}>
+      <div
+        onClick={this.onClickPallet}
+        style={{
+          cursor: 'pointer',
+          width: 300,
+          height: 300,
+          backgroundColor: '#f00'
+        }
+      }>
         <div style={{
           width: 300,
           height: 300,
