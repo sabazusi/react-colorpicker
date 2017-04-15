@@ -20,6 +20,7 @@ export default class ReactColorPicker extends React.Component<void, Props, State
   constructor() {
     super();
     this.state = {
+      isDragging: false,
       hsv: {
         h: 0,
         s: 0,
@@ -28,10 +29,17 @@ export default class ReactColorPicker extends React.Component<void, Props, State
     };
   }
 
-  getStyle() {
-    return {
-    };
-  }
+  onMouseMove = (e: MouseEvent) => {
+    if (this.state.isDragging) {
+      const hsv = {
+        s: parseInt(100 * e.nativeEvent.offsetX / 300, 10),
+        v: parseInt(100 * (300 - e.nativeEvent.offsetY) / 300, 10)
+      }
+      this.setState({
+        hsv: Object.assign({}, this.state.hsv, hsv)
+      });
+    }
+  };
 
   onClickPallet = (e: Event) => {
     const hsv = {
@@ -52,11 +60,16 @@ export default class ReactColorPicker extends React.Component<void, Props, State
           style={{
             width: 50,
             height: 50,
-            backgroundColor: `hsl(${color[0]}, ${color[1]}%, ${color[2]}%)`
+            backgroundColor: `hsl(${color[0]}, ${color[1]}%, ${color[2]}%)`,
+            userSelect: 'none'
           }}
         />
         <div
           onClick={this.onClickPallet}
+          onMouseDown={() => this.setState({ isDragging: true })}
+          onMouseMove={this.onMouseMove}
+          onMouseUp={() => this.setState({ isDragging: false })}
+          onMouseOut={() => this.setState({ isDragging: false })}
           style={{
             cursor: 'pointer',
             width: 300,
