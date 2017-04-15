@@ -76,6 +76,14 @@ export default class ReactColorPicker extends React.Component<void, Props, State
             }} />
           </div>
         </div>
+        <div
+          style={{
+            cursor: 'pointer',
+            width: 300,
+            height: 40,
+            background: 'linear-gradient(to right, #ff0000 0%, #ff9900 10%, #cdff00 20%, #35ff00 30%, #00ff66 40%, #00fffd 50%, #0066ff 60%, #3200ff 70%, #cd00ff 80%, #ff0099 90%, #ff0000 100%)'
+          }}
+        />
       </div>
     );
   }
