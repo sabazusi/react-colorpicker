@@ -71,12 +71,26 @@ export default class ReactColorPicker extends React.Component<void, Props, State
           onMouseUp={() => this.setState({ isDragging: false })}
           onMouseOut={() => this.setState({ isDragging: false })}
           style={{
+            position: 'relative',
+            overflow: 'hidden',
             cursor: 'pointer',
             width: 300,
             height: 300,
             backgroundColor: '#f00'
           }
         }>
+          <span
+            style={{
+              position: 'absolute',
+              display: 'block',
+              left: (300 * hsv.s / 100) - 3,
+              bottom: (300 * hsv.v / 100) - 3,
+              width: 6,
+              height: 6,
+              pointerEvents: 'none',
+              border: '1px solid #000'
+            }}
+          />
           <div style={{
             width: 300,
             height: 300,

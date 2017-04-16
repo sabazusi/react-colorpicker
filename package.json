@@ -4,6 +4,7 @@
   "description": "",
   "main": "bin/index.js",
   "scripts": {
+    "start": "npm run storybook",
     "storybook": "start-storybook -p 9001",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
