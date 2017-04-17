@@ -4,7 +4,7 @@
   "description": "",
   "main": "bin/index.js",
   "scripts": {
-    "build": "",
+    "build": "babel src -d bin",
     "flow": "flow src",
     "flow-typed": "flow-typed install",
     "start": "npm run storybook",
@@ -19,7 +19,12 @@
   },
   "devDependencies": {
     "@kadira/storybook": "^2.35.3",
+    "babel-cli": "^6.24.1",
+    "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "color": "^1.0.3",
     "flow-bin": "^0.44.0",
     "flow-typed": "^2.0.0"
