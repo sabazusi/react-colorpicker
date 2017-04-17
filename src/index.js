@@ -8,6 +8,8 @@ type Props = {
 };
 
 type State = {
+  hueLevel: number;
+  isDragging: boolean;
   hsv: {
     h: number;
     s: number;
@@ -20,6 +22,7 @@ export default class ReactColorPicker extends React.Component<void, Props, State
   constructor() {
     super();
     this.state = {
+      hueLevel: 0,
       isDragging: false,
       hsv: {
         h: 0,
@@ -49,10 +52,15 @@ export default class ReactColorPicker extends React.Component<void, Props, State
     this.setState({
       hsv: Object.assign({}, this.state.hsv, hsv)
     });
-  }
+  };
+
+  onClickHueBar = (e: Event) => {
+    this.setState({hueLevel: parseInt( 100 * e.nativeEvent.offsetX / 300, 10)})
+    console.log(e.nativeEvent.offsetX);
+  };
 
   render() {
-    const {hsv} = this.state;
+    const {hueLevel, hsv} = this.state;
     const color = Color(hsv).hsl().color;
     return (
       <div>
@@ -83,12 +91,12 @@ export default class ReactColorPicker extends React.Component<void, Props, State
             style={{
               position: 'absolute',
               display: 'block',
-              left: (300 * hsv.s / 100) - 3,
-              bottom: (300 * hsv.v / 100) - 3,
-              width: 6,
-              height: 6,
+              left: (300 * hsv.s / 100) - 2,
+              bottom: (300 * hsv.v / 100) - 2,
+              width: 4,
+              height: 4,
               pointerEvents: 'none',
-              border: '1px solid #000'
+              border: '2px solid #fff'
             }}
           />
           <div style={{
@@ -104,13 +112,28 @@ export default class ReactColorPicker extends React.Component<void, Props, State
           </div>
         </div>
         <div
+          onClick={this.onClickHueBar}
           style={{
             cursor: 'pointer',
+            position: 'relative',
             width: 300,
             height: 40,
+            overflow: 'hidden',
             background: 'linear-gradient(to right, #ff0000 0%, #ff9900 10%, #cdff00 20%, #35ff00 30%, #00ff66 40%, #00fffd 50%, #0066ff 60%, #3200ff 70%, #cd00ff 80%, #ff0099 90%, #ff0000 100%)'
           }}
-        />
+        >
+          <span
+            style={{
+              left: 300 * hueLevel / 100,
+              position: 'absolute',
+              width: 1,
+              height: 36,
+              border: '2px solid #000',
+              pointerEvents: 'none',
+              backgroundColor: '#fff'
+            }}
+          />
+        </div>
       </div>
     );
   }
