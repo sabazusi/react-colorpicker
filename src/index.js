@@ -6,7 +6,7 @@ import Color from 'color';
 import DraggablePanel from './DraggablePanel';
 
 type Props = {
-  defaultColor: string;
+  defaultColor: *;
 };
 
 type State = {
@@ -30,6 +30,15 @@ export default class ReactColorPicker extends React.Component<void, Props, State
         v: 0
       }
     };
+  }
+
+  componentDidMount() {
+    const color =  Color(this.props.defaultColor);
+    if (color) {
+      this.setState({
+        hsv: color.hsv().object()
+      })
+    }
   }
 
   onMouseMove = (e: MouseEvent) => {

@@ -49,7 +49,7 @@ class Draggable extends React.Component {
 storiesOf('ColorPicker', module)
   .add('default: #ff0000', () => (
     <ColorPicker
-      default="ff0000"
+      defaultColor="blue"
     />
   ))
   .add('draggable panel', () => (
