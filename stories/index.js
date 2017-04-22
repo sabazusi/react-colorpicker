@@ -16,15 +16,25 @@ class Draggable extends React.Component {
       <div style={{position: 'relative'}}>
         <DraggablePanel
           onChangePosition={(x, y) => this.setState({x, y})}
-          width={300}
-          height={300}
           invertY
-          styles={{backgroundColor: '#f00'}}
+          max={{
+            x: 299,
+            y: 299
+          }}
+          min={{
+            x: 0,
+            y: 0
+          }}
+          styles={{
+            width:300,
+            height:300,
+            backgroundColor: '#f00'
+          }}
         />
         <span
           style={{
-            width: 3,
-            height: 3,
+            width: 1,
+            height: 1,
             position: 'absolute',
             left: this.state.x,
             bottom: this.state.y,

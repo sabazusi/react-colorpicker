@@ -14,6 +14,10 @@ var _color = require('color');
 
 var _color2 = _interopRequireDefault(_color);
 
+var _DraggablePanel = require('./DraggablePanel');
+
+var _DraggablePanel2 = _interopRequireDefault(_DraggablePanel);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -93,17 +97,6 @@ var ReactColorPicker = function (_React$Component) {
         _react2.default.createElement(
           'div',
           {
-            onClick: this.onClickPallet,
-            onMouseDown: function onMouseDown() {
-              return _this2.setState({ isDragging: true });
-            },
-            onMouseMove: this.onMouseMove,
-            onMouseUp: function onMouseUp() {
-              return _this2.setState({ isDragging: false });
-            },
-            onMouseOut: function onMouseOut() {
-              return _this2.setState({ isDragging: false });
-            },
             style: {
               position: 'relative',
               overflow: 'hidden',
@@ -111,7 +104,8 @@ var ReactColorPicker = function (_React$Component) {
               width: 300,
               height: 300,
               backgroundColor: '' + (0, _color2.default)({ h: hsv.h, s: 100, v: 100 }).rgb().string()
-            } },
+            }
+          },
           _react2.default.createElement('span', {
             style: {
               position: 'absolute',
@@ -125,41 +119,79 @@ var ReactColorPicker = function (_React$Component) {
             }
           }),
           _react2.default.createElement(
-            'div',
-            { style: {
+            _DraggablePanel2.default,
+            {
+              onChangePosition: function onChangePosition(x, y) {
+                return _this2.setState({ hsv: Object.assign({}, hsv, { s: x, v: y }) });
+              },
+              invertY: true,
+              max: {
+                x: 100,
+                y: 100
+              },
+              min: {
+                x: 0,
+                y: 0
+              },
+              styles: {
                 width: 300,
                 height: 300,
-                background: 'linear-gradient(to right, #fff, rgba(204,154,129,0))'
-              } },
-            _react2.default.createElement('div', { style: {
-                width: 300,
-                height: 300,
-                background: 'linear-gradient(to top, #000, rgba(204,154,129,0))'
-              } })
+                backgroundColor: '' + (0, _color2.default)({ h: hsv.h, s: 100, v: 100 }).rgb().string()
+              }
+            },
+            _react2.default.createElement(
+              'div',
+              { style: {
+                  width: 300,
+                  height: 300,
+                  background: 'linear-gradient(to right, #fff, rgba(204,154,129,0))'
+                } },
+              _react2.default.createElement('div', { style: {
+                  width: 300,
+                  height: 300,
+                  background: 'linear-gradient(to top, #000, rgba(204,154,129,0))'
+                } })
+            )
           )
         ),
         _react2.default.createElement(
           'div',
           {
-            onClick: this.onClickHueBar,
             style: {
               cursor: 'pointer',
               position: 'relative',
               width: 300,
               height: 40,
-              overflow: 'hidden',
+              //overflow: 'hidden',
               background: 'linear-gradient(to right, #ff0000 0%, #ff9900 10%, #cdff00 20%, #35ff00 30%, #00ff66 40%, #00fffd 50%, #0066ff 60%, #3200ff 70%, #cd00ff 80%, #ff0099 90%, #ff0000 100%)'
             }
           },
           _react2.default.createElement('span', {
             style: {
-              left: 300 * hsv.h / 360,
+              left: Math.min(300 * hsv.h / 360, 299),
               position: 'absolute',
               width: 1,
               height: 36,
-              border: '2px solid #000',
               pointerEvents: 'none',
-              backgroundColor: '#fff'
+              backgroundColor: '#000'
+            }
+          }),
+          _react2.default.createElement(_DraggablePanel2.default, {
+            onChangePosition: function onChangePosition(x, y) {
+              return _this2.setState({ hsv: Object.assign({}, hsv, { h: x }) });
+            },
+            max: {
+              x: 360,
+              y: 0
+            },
+            min: {
+              x: 0,
+              y: 0
+            },
+            styles: {
+              width: 300,
+              height: 40,
+              background: 'linear-gradient(to right, #ff0000 0%, #ff9900 10%, #cdff00 20%, #35ff00 30%, #00ff66 40%, #00fffd 50%, #0066ff 60%, #3200ff 70%, #cd00ff 80%, #ff0099 90%, #ff0000 100%)'
             }
           })
         )
