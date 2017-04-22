@@ -8,7 +8,6 @@ type Props = {
 };
 
 type State = {
-  hueLevel: number;
   isDragging: boolean;
   hsv: {
     h: number;
@@ -22,7 +21,6 @@ export default class ReactColorPicker extends React.Component<void, Props, State
   constructor() {
     super();
     this.state = {
-      hueLevel: 0,
       isDragging: false,
       hsv: {
         h: 0,
@@ -55,12 +53,15 @@ export default class ReactColorPicker extends React.Component<void, Props, State
   };
 
   onClickHueBar = (e: Event) => {
-    this.setState({hueLevel: parseInt( 100 * e.nativeEvent.offsetX / 300, 10)})
-    console.log(e.nativeEvent.offsetX);
+    this.setState({
+      hsv: Object.assign({}, this.state.hsv, {
+        h: parseInt( 360 * e.nativeEvent.offsetX / 300, 10)
+      })
+    });
   };
 
   render() {
-    const {hueLevel, hsv} = this.state;
+    const {hsv} = this.state;
     const color = Color(hsv).hsl().color;
     return (
       <div>
@@ -84,7 +85,7 @@ export default class ReactColorPicker extends React.Component<void, Props, State
             cursor: 'pointer',
             width: 300,
             height: 300,
-            backgroundColor: '#f00'
+            backgroundColor: `${Color({h:hsv.h, s:100, v: 100}).rgb().string()}`
           }
         }>
           <span
@@ -124,7 +125,7 @@ export default class ReactColorPicker extends React.Component<void, Props, State
         >
           <span
             style={{
-              left: 300 * hueLevel / 100,
+              left: 300 * hsv.h / 360,
               position: 'absolute',
               width: 1,
               height: 36,

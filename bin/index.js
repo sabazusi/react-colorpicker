@@ -53,12 +53,14 @@ var ReactColorPicker = function (_React$Component) {
     };
 
     _this.onClickHueBar = function (e) {
-      _this.setState({ hueLevel: parseInt(100 * e.nativeEvent.offsetX / 300, 10) });
-      console.log(e.nativeEvent.offsetX);
+      _this.setState({
+        hsv: Object.assign({}, _this.state.hsv, {
+          h: parseInt(360 * e.nativeEvent.offsetX / 300, 10)
+        })
+      });
     };
 
     _this.state = {
-      hueLevel: 0,
       isDragging: false,
       hsv: {
         h: 0,
@@ -74,9 +76,7 @@ var ReactColorPicker = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var _state = this.state,
-          hueLevel = _state.hueLevel,
-          hsv = _state.hsv;
+      var hsv = this.state.hsv;
 
       var color = (0, _color2.default)(hsv).hsl().color;
       return _react2.default.createElement(
@@ -110,7 +110,7 @@ var ReactColorPicker = function (_React$Component) {
               cursor: 'pointer',
               width: 300,
               height: 300,
-              backgroundColor: '#f00'
+              backgroundColor: '' + (0, _color2.default)({ h: hsv.h, s: 100, v: 100 }).rgb().string()
             } },
           _react2.default.createElement('span', {
             style: {
@@ -153,7 +153,7 @@ var ReactColorPicker = function (_React$Component) {
           },
           _react2.default.createElement('span', {
             style: {
-              left: 300 * hueLevel / 100,
+              left: 300 * hsv.h / 360,
               position: 'absolute',
               width: 1,
               height: 36,
