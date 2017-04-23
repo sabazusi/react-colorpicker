@@ -21,7 +21,6 @@ type Props = {
 };
 
 type State = {
-  isDragging: boolean;
   hsv: {
     h: number;
     s: number;
@@ -48,7 +47,6 @@ export default class ReactColorPicker extends React.Component<DefaultProps, Prop
   constructor() {
     super();
     this.state = {
-      isDragging: false,
       hsv: {
         h: 0,
         s: 0,
@@ -64,39 +62,8 @@ export default class ReactColorPicker extends React.Component<DefaultProps, Prop
     })
   }
 
-  onMouseMove = (e: MouseEvent) => {
-    if (this.state.isDragging) {
-      const hsv = {
-        s: parseInt(100 * e.nativeEvent.offsetX / 300, 10),
-        v: parseInt(100 * (300 - e.nativeEvent.offsetY) / 300, 10)
-      }
-      this.setState({
-        hsv: Object.assign({}, this.state.hsv, hsv)
-      });
-    }
-  };
-
-  onClickPallet = (e: Event) => {
-    const hsv = {
-      s: parseInt(100 * e.nativeEvent.offsetX / 300, 10),
-      v: parseInt(100 * (300 - e.nativeEvent.offsetY) / 300, 10)
-    }
-    this.setState({
-      hsv: Object.assign({}, this.state.hsv, hsv)
-    });
-  };
-
-  onClickHueBar = (e: Event) => {
-    this.setState({
-      hsv: Object.assign({}, this.state.hsv, {
-        h: parseInt( 360 * e.nativeEvent.offsetX / 300, 10)
-      })
-    });
-  };
-
-
   render() {
-    const {hsv} = this.state;
+    const { hsv } = this.state;
     const color = Color(hsv).hsl().color;
     return (
       <div>
