@@ -6,7 +6,18 @@ import Color from 'color';
 import DraggablePanel from './DraggablePanel';
 
 type Props = {
-  defaultColor: *;
+  defaultColor?: *;
+  pallet: {
+    width: number;
+    height: number;
+    pointerClassName?: string;
+  };
+  hueBar: {
+    width: number;
+    height: number;
+    pointerClassName?: string;
+  };
+  onChange: (color: string) => void;
 };
 
 type State = {
@@ -18,8 +29,22 @@ type State = {
   }
 };
 
-export default class ReactColorPicker extends React.Component<void, Props, State> {
+type DefaultProps = Props;
+
+export default class ReactColorPicker extends React.Component<DefaultProps, Props, State> {
   state: State;
+  static defaultProps = {
+    onChange: (color: string) => console.log(color),
+    pallet: {
+      width: 200,
+      height: 200
+    },
+    hueBar: {
+      width: 200,
+      height: 200
+    }
+  };
+
   constructor() {
     super();
     this.state = {
@@ -34,11 +59,9 @@ export default class ReactColorPicker extends React.Component<void, Props, State
 
   componentDidMount() {
     const color =  Color(this.props.defaultColor);
-    if (color) {
-      this.setState({
-        hsv: color.hsv().object()
-      })
-    }
+    if (color) this.setState({
+      hsv: color.hsv().object()
+    })
   }
 
   onMouseMove = (e: MouseEvent) => {

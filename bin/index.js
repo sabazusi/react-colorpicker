@@ -76,6 +76,14 @@ var ReactColorPicker = function (_React$Component) {
   }
 
   _createClass(ReactColorPicker, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var color = (0, _color2.default)(this.props.defaultColor);
+      if (color) this.setState({
+        hsv: color.hsv().object()
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -202,5 +210,18 @@ var ReactColorPicker = function (_React$Component) {
   return ReactColorPicker;
 }(_react2.default.Component);
 
+ReactColorPicker.defaultProps = {
+  onChange: function onChange(color) {
+    return console.log(color);
+  },
+  pallet: {
+    width: 200,
+    height: 200
+  },
+  hueBar: {
+    width: 200,
+    height: 200
+  }
+};
 exports.default = ReactColorPicker;
 module.exports = exports['default'];
