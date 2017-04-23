@@ -14,6 +14,7 @@
   "author": "sabazusi",
   "license": "MIT",
   "dependencies": {
+    "classnames": "^2.2.5",
     "react": "^15.5.3",
     "react-dom": "^15.5.3"
   },

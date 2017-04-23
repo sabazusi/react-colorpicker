@@ -1,0 +1,13 @@
+.container {
+  position: relative;
+  cursor: pointer;
+}
+
+.pointer {
+  position: absolute;
+  display: block;
+  width: 1;
+  height: 36;
+  pointer-events: none;
+  background-color: #000;
+}
