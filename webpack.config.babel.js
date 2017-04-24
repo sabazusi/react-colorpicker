@@ -21,18 +21,7 @@ export default {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              query: {
-                modules: true,
-                sourceMap: true
-              }
-            }
-          ]
-        })
+        use: [ 'style-loader', 'css-loader' ]
       }
     ]
   }
