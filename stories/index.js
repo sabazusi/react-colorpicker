@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import ColorPicker from '../src/index';
+import ColorPicker from '../src';
 import DraggablePanel from '../src/DraggablePanel';
 
 class Draggable extends React.Component {
@@ -50,6 +50,15 @@ storiesOf('ColorPicker', module)
   .add('default: #ff0000', () => (
     <ColorPicker
       defaultColor="blue"
+      pallet={{
+        width: 300,
+        height: 300
+      }}
+      hueBar={{
+        width: 300,
+        height: 80
+      }}
+      onChange={action('change')}
     />
   ))
   .add('draggable panel', () => (
