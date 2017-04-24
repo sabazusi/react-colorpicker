@@ -6,12 +6,10 @@ import DraggablePanel from '../DraggablePanel';
 import styles from './style.css';
 
 type Props = {
-  onChange: (x: number, y: number) => void;
+  onChange: (x: number) => void;
   width: number;
   height: number;
-  position: {
-    left: number;
-  }
+  hue: number;
   pointerClassName?: string;
 };
 
@@ -21,9 +19,14 @@ export default class HueBar extends React.Component<void, Props, void> {
       onChange,
       width,
       height,
-      position,
+      hue,
       pointerClassName
     } = this.props;
+    const left = Math.min(
+      parseInt(width * hue) / 360,
+      width - 1
+    );
+
     return (
       <div
         className={styles.container}
@@ -34,7 +37,7 @@ export default class HueBar extends React.Component<void, Props, void> {
       >
         <span
           className={cx(styles.pointer, pointerClassName)}
-          style={{ left: Math.min(position.left, width - 1) }}
+          style={{ left }}
         />
         <DraggablePanel
           onChangePosition={onChange}

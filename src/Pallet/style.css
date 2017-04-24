@@ -1,0 +1,22 @@
+.container {
+  position: relative;
+  cursor: pointer;
+}
+
+.pointer {
+  position: absolute;
+  display: block;
+  width: 3;
+  height: 3;
+  pointer-events: none;
+  border: 1px solid #fff;
+  border-radius: 1px;
+}
+
+.whiteBase {
+  background: linear-gradient(to right, #fff, rgba(204,154,129,0));
+}
+
+.blackBase {
+  background: linear-gradient(to top, #000, rgba(204,154,129,0));
+}
