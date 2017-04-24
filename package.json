@@ -4,7 +4,7 @@
   "description": "",
   "main": "bin/index.js",
   "scripts": {
-    "build": "babel src -d bin",
+    "build": "webpack",
     "flow": "flow src",
     "flow-typed": "flow-typed install",
     "start": "npm run storybook",
@@ -16,7 +16,8 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "react": "^15.5.3",
-    "react-dom": "^15.5.3"
+    "react-dom": "^15.5.3",
+    "webpack": "^2.4.1"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.35.3",
