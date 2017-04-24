@@ -31,8 +31,8 @@ export default class Pallet extends React.Component<void, Props, void> {
     const bottom = Math.min(height * hsv.v / 100, height - 1);
     return (
       <div
-        className={styles.container}
         style={{width, height}}
+        className={styles.container}
       >
         <span
           className={cx(styles.pointer, pointerClassName)}
@@ -55,14 +55,8 @@ export default class Pallet extends React.Component<void, Props, void> {
             backgroundColor: `${Color({h:hsv.h, s:100, v: 100}).rgb().string()}`
           }}
         >
-          <div
-            className={styles.whiteBase}
-            style={{width, height}}
-          >
-            <div
-              className={styles.blackBase}
-              style={{width, height}}
-            />
+          <div className={styles.whiteBase}>
+            <div className={styles.blackBase} />
           </div>
         </DraggablePanel>
       </div>

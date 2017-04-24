@@ -51,8 +51,8 @@ export default class HueBar extends React.Component<void, Props, void> {
             y: 0
           }}
           styles={{
-            width: '100%',
-            height: '100%',
+            width,
+            height,
             background: 'linear-gradient(to right, #ff0000 0%, #ff9900 10%, #cdff00 20%, #35ff00 30%, #00ff66 40%, #00fffd 50%, #0066ff 60%, #3200ff 70%, #cd00ff 80%, #ff0099 90%, #ff0000 100%)'
           }}
         />

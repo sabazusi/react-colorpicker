@@ -5,6 +5,19 @@ import Color from 'color';
 import Pallet from './Pallet';
 import HueBar from './HueBar';
 
+type PickedColor = {
+  hsv: {
+    h: number;
+    s: number;
+    v: number;
+  },
+  rgb: {
+    r: number;
+    g: number;
+    b: number;
+  }
+};
+
 type Props = {
   defaultColor?: *;
   pallet: {
@@ -17,7 +30,7 @@ type Props = {
     height: number;
     pointerClassName?: string;
   };
-  onChange: (color: string) => void;
+  onChange: (color: PickedColor) => void;
 };
 
 type State = {
@@ -33,7 +46,7 @@ type DefaultProps = Props;
 export default class ColorPicker extends React.Component<DefaultProps, Props, State> {
   state: State;
   static defaultProps = {
-    onChange: (color: string) => console.log(color),
+    onChange: (color: PickedColor) => console.log(color),
     pallet: {
       width: 200,
       height: 200
@@ -55,20 +68,28 @@ export default class ColorPicker extends React.Component<DefaultProps, Props, St
     };
   }
 
+  changeColor = () => {
+    const color = Color(this.state.hsv);
+    this.props.onChange({
+      hsv: color.hsv().object(),
+      rgb: color.rgb().object()
+    });
+  }
+
   onChangePalletPoint = (s: number, v: number) => {
     this.setState({
       hsv: Object.assign({}, this.state.hsv, { s, v })
-    });
+    }, () => this.changeColor());
   };
 
   onChangeHueValue = (h: number) => {
     this.setState({
       hsv: Object.assign({}, this.state.hsv, { h })
-    });
+    }, () => this.changeColor());
   };
 
   componentDidMount() {
-    const color =  Color(this.props.defaultColor);
+    const color =  Color(this.props.defaultColor || 'red');
     if (color) this.setState({
       hsv: color.hsv().object()
     })
