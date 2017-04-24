@@ -16,8 +16,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "react": "^15.5.3",
-    "react-dom": "^15.5.3",
-    "webpack": "^2.4.1"
+    "react-dom": "^15.5.3"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.35.3",
@@ -28,7 +27,11 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "color": "^1.0.3",
+    "css-loader": "^0.28.0",
+    "extract-text-webpack-plugin": "^2.1.0",
     "flow-bin": "^0.44.0",
-    "flow-typed": "^2.0.0"
+    "flow-typed": "^2.0.0",
+    "style-loader": "^0.16.1",
+    "webpack": "^2.4.1"
   }
 }
