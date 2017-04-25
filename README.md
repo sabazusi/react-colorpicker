@@ -6,15 +6,15 @@ Simple colorpicker for react.
 
 
 ## Install
-`$ npm i git+ssh://git@github.com/sabazusi/react-colorpicker.git --save`
+`$ npm i git+ssh://git@github.com/sabazusi/react-simple-colorpicker.git --save`
 
 or
 
-`$ yarn add git+ssh://git@github.com/sabazusi/react-colorpicker.git`
+`$ yarn add git+ssh://git@github.com/sabazusi/react-simple-colorpicker.git`
 
 ## Usage
 ```javascript
-import ColorPicker from 'react-colorpicker';
+import ColorPicker from 'react-simple-colorpicker';
 
 const onChangeColor = (currentColor) => {
   console.log(currentColor); // {hsv: {}, rgb: {}}
@@ -49,5 +49,5 @@ const component = () => {
 |:----------|------|--------:|
 |defaultColor|string / Object / array (Using [color.js](https://github.com/qix-/color), detect color by it)|red|
 |onChange|(color: {hsv: Object, rgb: Object})=> void|(color) => console.log(color)|
-|pallet|{width: number, height: number, pointerClassName: string}|{width: 200, height: 200}|
-|hueBar|{width: number, height: number, pointerClassName: string|{width: 200, height: 200}|
+|pallet|{width: number, height: number, pointerClassName: string}|{width: 300, height: 300}|
+|hueBar|{width: number, height: number, pointerClassName: string|{width: 300, height: 100}|

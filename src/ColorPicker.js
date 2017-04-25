@@ -48,12 +48,12 @@ export default class ColorPicker extends React.Component<DefaultProps, Props, St
   static defaultProps = {
     onChange: (color: PickedColor) => console.log(color),
     pallet: {
-      width: 200,
-      height: 200
+      width: 300,
+      height: 300
     },
     hueBar: {
-      width: 200,
-      height: 200
+      width: 300,
+      height: 100
     }
   };
 
